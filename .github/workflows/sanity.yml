@@ -1,0 +1,51 @@
+# name: "Sanity"
+# on:
+#   pull_request
+# jobs:
+#   cypress:
+#     name: "Cypress"
+#     container: cypress/browsers:node14.17.0-chrome88-ff89
+#     runs-on: "ubuntu-latest"
+#     timeout-minutes: 30
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2.3.4
+#       - name: Setup Node
+#         uses: actions/setup-node@v2.1.2
+#         with:
+#           node-version: 14.x
+#       - name: npm install and run
+#         run: |
+#           npm ci
+#           npm start & npx wait-on http://localhost:3000
+#       - name: Running Cypress tests
+#         run: npm run cypress:test-headless
+#         timeout-minutes: 30
+
+name: Cypress run
+on:
+  pull_request
+jobs:
+  runTests:
+    runs-on: ubuntu-20.04
+    strategy:
+      # when one test fails, DO NOT cancel the other
+      fail-fast: false
+      matrix:
+        # run 5 copies of the current job in parallel
+        containers: [1, 2, 3, 4, 5]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v4
+        with:
+          record: true
+          parallel: true
+          browser: chrome
+          group: 'Actions example'
+        env:
+          CYPRESS_RECORD_KEY: "a61edaed-2321-41d6-a74f-ed7a19327859"
+          CYPRESS_PROJECT_ID: "54ysi7"
+

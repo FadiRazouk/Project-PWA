@@ -1,0 +1,21 @@
+{
+  "name": "Project PWA",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": "14.17.3"
+  },
+  "dependencies": {
+    "cypress": "10.10.0",
+    "typescript": "^4.6.3"
+  },
+  "scripts": {
+    "cypress:test-headless": "cypress run --browser chrome --headless",
+    "cypress:gui": "cypress run --browser chrome --no-exit"
+  },
+  "devDependencies": {
+    "cypress-image-diff-js": "^1.22.0",
+    "mocha": "^10.0.0",
+    "prettier": "^2.5.1"
+  }
+}
