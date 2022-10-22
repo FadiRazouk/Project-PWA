@@ -21,8 +21,8 @@ describe('home page tests', () => {
 			accountToBeDeletedUid = data.body.uid;
 			utils.createAccountAndSignIn(data.body);
 		});
-		cy.wait('@workspace')
-		cy.get(mainPage.addMyFirstDebtButton).click();
+		cy.wait('@workspace');
+		cy.contains('Add my first debt').click();
 		cy.url().should('include', 'debt');
 	});
 
