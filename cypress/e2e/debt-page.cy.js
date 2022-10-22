@@ -73,7 +73,10 @@ describe('debt page tests', () => {
 			accountToBeDeletedUid = data.body.uid;
 			utils.createAccountAndSignIn(data.body);
 		});
+		cy.wait('@workspace');
 		utils.fillDebtInfo('adewdbc', '2000', '300', '300');
+		cy.get('.info.footer-light').should('be.visible');
+		cy.wait(5000)
 		cy.compareSnapshot('debt-page-after-debt-added');
 	});
 });
