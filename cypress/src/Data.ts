@@ -1,5 +1,5 @@
-export default {
-    data: {
+class Data {
+    data = {
         invalidEmail: 'invalidEmailFormat123',
         invalidEmailMsg: 'Not a valid email',
         longTexg: 'someNameKindaLongButNotTooLong',
@@ -13,3 +13,5 @@ export default {
         welcomeText: 'Hi QA Test! Primary',
     }
 };
+
+export const data = new Data();
