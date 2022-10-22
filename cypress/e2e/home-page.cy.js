@@ -22,7 +22,7 @@ describe('home page tests', () => {
 			utils.createAccountAndSignIn(data.body);
 		});
 		cy.wait('@workspace')
-		cy.get(mainPage.addMyFirstDebtButton).click();
+		cy.contains('Add my first debt').click();
 		cy.url().should('include', 'debt');
 	});
 

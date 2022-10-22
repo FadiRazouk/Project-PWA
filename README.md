@@ -9,6 +9,19 @@ npx cypress run (to run all the tests)
 
 # here is the latest cicd run for the tests in parallel
 
-PS: they are failing as the api for generating accounts is not responding, (will update)
+https://github.com/FadiRazouk/Project-PWA/actions/runs/3302814993/jobs/5450030348
 
-https://github.com/FadiRazouk/Project-PWA/actions/runs/3301606340/jobs/5447266281
+useing 5 machine is definitely an overkill at this moment but its just for demonstration purposes
+i was able to cut down run time by 300% from 3min to 1min.
+
+Here is a screen shot of cypress dash showing the tests running.
+
+<p align="center">
+
+  <img src="./cypressDash.png">
+</p>
+
+# Visual testing
+cypress-image-diff is used to test the visuals of the website, as first time running it will only take baseline image and what ever runs after that it will compare newly created screenshots to the base line
+
+for more info please visit https://github.com/uktrade/cypress-image-diff
