@@ -1,36 +1,41 @@
-const getByIconName = (iconName) => `[data-mat-icon-name="${iconName}"]`;
-
 export default {
   loginPage: {
-    usernameInput: '[id*="input_username"]',
-    passwordInput: '[id*="input_password"]',
-    codeInput: '#code0',
-    signupLink: '[href="#/public/sign-up"]',
-    signinLink: '[href="#/public/sign-in"]',
-    forgotPasswordLink: '[href="#/public/forgot-password"]',
-    showPasswordIcon: '.fa-eye-slash',
     backButton: 'a[class*=mat-button-base]',
-    passwordValidation : '.passed'
+    codeInput: '#code0',
+    forgotPasswordLink: '[href="#/public/forgot-password"]',
+    passwordInput: '[id*="input_password"]',
+    passwordValidation : '.passed',
+    showPasswordIcon: '.fa-eye-slash',
+    signinLink: '[href="#/public/sign-in"]',
+    signupLink: '[href="#/public/sign-up"]',
+    usernameInput: '[id*="input_username"]',
   },
   mainPage: {
-    profileLogo: '[mattooltip="Profile"]',
     addMyFirstDebtButton: '[class*="mat-f"]',
     primaryButton:'[class*="workspace-2"]',
+    profileLogo: '[mattooltip="Profile"]',
+    navbarHomeButton: '[data-mat-icon-name="logo_bird"]',
+
   },
 
   shared:{
-    validationMessage: 'formly-validation-message',
+    body: 'body',
     submitButton: '[type="submit"]',
-    body: 'body'
+    validationMessage: 'formly-validation-message',
   },
 
   debtPage:{
     addDebtButton: '[class^="mat-focus"]',
+    annualPercentageRateInput :'[id*="input_no_promo"]',
+    currentBalanceInput:'[id*="input_current_balance"]',
+    dueDataButton:'[id*="datepicker_next_due_date"]',
+    minimumPaymentAmountInput :'[id*="input_minimum_payment_amount"]',
+    minimumPaymentTooltip :'.mat-tooltip-trigger',
+    minimumPaymentTooltipText :'[class*="mat-tooltip "]',
     navbarDebtButton: '[class*="chart-pie"]',
     nicknameInput: '[id*="input_debt"]',
-    currentBalanceInput:'[id*="input_current_balance"]',
-    annualPercentageRateInput :'[id*="input_no_promo"]',
-    minimumPaymentAmountInput :'[id*="input_minimum_payment_amount"]',
-    
+    previousMonthButton:'[aria-label="Previous month"]',
+    calenderDaysButtons: '[class*="cell-content"]',
+    oldDataMsg: 'simple-snack-bar > span',
   },
 };

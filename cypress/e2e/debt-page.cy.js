@@ -1,86 +1,14 @@
 import { debtPage, shared } from '../locators';
 import utils from '../src/utils';
+import { data } from '../src/data';
 
-describe('Visuals', () => {
+describe('debt page tests', () => {
 	let accountToBeDeletedUid
 	afterEach(() => {
 		cy.deleteUser(accountToBeDeletedUid)
 	});
-	it('Verify the visuals of the debt page', () => {
-		cy.intercept('api/v2/user/workspace/*').as('workspace')
-		utils.newAccountCredentials().then((data) => {
-			accountToBeDeletedUid = data.body.uid;
-			utils.createAccountAndSignIn(data.body);
-		});
-		cy.get(debtPage.navbarDebtButton).click();
-		cy.wait('@workspace');
-		cy.get(debtPage.addDebtButton).eq(1).click({ force: true });
-	});
 
-	it('Verify debt creation validation field', () => {
-		cy.intercept('api/v2/user/workspace/*').as('workspace');
-		utils.newAccountCredentials().then((data) => {
-			accountToBeDeletedUid = data.body.uid;
-			utils.createAccountAndSignIn(data.body);
-		});
-		utils.addDebt();
-		cy.get(debtPage.nicknameInput).click();
-		cy.get(debtPage.currentBalanceInput).click();
-		cy.get(shared.validationMessage).should('have.length', 1)
-		cy.get(debtPage.annualPercentageRateInput).click();
-		cy.get(shared.validationMessage).should('have.length', 2)
-		cy.get(debtPage.minimumPaymentAmountInput).click();
-		cy.get(shared.validationMessage).should('have.length', 3)
-		cy.get(debtPage.nicknameInput).click();
-		cy.get(shared.validationMessage).should('have.length', 4)
-	});
-
-	it('Verify debt creation submit button should be enabled only when all the required fields are filled', () => {
-		cy.intercept('api/v2/user/workspace/*').as('workspace');
-		utils.newAccountCredentials().then((data) => {
-			accountToBeDeletedUid = data.body.uid;
-			utils.createAccountAndSignIn(data.body);
-		});
-		utils.addDebt();
-		cy.get(debtPage.nicknameInput).type('ValidInput');
-		cy.get(shared.submitButton).should('be.disabled');
-		cy.get(debtPage.currentBalanceInput).type('1234');
-		cy.get(shared.submitButton).should('be.disabled');
-		cy.get(debtPage.annualPercentageRateInput).type('200');
-		cy.get(shared.submitButton).should('be.disabled');
-		cy.get(debtPage.minimumPaymentAmountInput).type('200');
-		cy.get(shared.submitButton).should('be.enabled');
-	});
-
-	it('Verify debt creation [nickname] field', () => {
-		cy.intercept('api/v2/user/workspace/*').as('workspace');
-		utils.newAccountCredentials().then((data) => {
-			accountToBeDeletedUid = data.body.uid;
-			utils.createAccountAndSignIn(data.body);
-		});
-		utils.addDebt();
-		cy.get(debtPage.nicknameInput).type('someNameKindaLongButNotTooLong');
-		cy.get(debtPage.nicknameInput).should('have.attr', 'aria-invalid', 'false');
-	});
-
-	it('Verify debt creation [Current balance] field', () => {
-		cy.intercept('api/v2/user/workspace/*').as('workspace');
-		utils.newAccountCredentials().then((data) => {
-			accountToBeDeletedUid = data.body.uid;
-			utils.createAccountAndSignIn(data.body);
-		});
-		utils.addDebt();
-		// current balance should only take numbers as an input
-		cy.get(debtPage.currentBalanceInput).type('someNameKindaLongButNotTooLong');
-		cy.get(debtPage.nicknameInput).click();
-		cy.get(debtPage.currentBalanceInput).should('have.attr', 'aria-describedby', 'mat-error-3');
-		// entering number should be valid
-		cy.get(debtPage.currentBalanceInput).type('1234');
-		cy.get(debtPage.nicknameInput).click();
-		cy.get(debtPage.currentBalanceInput).should('have.attr', 'aria-invalid', 'false');
-	});
-
-	it('Verify debt creation [Annual Percentage Rate] field', () => {
+	it('Verify debt creation [Annual Percentage Rate] field, ID: 26', () => {
 		cy.intercept('api/v2/user/workspace/*').as('workspace');
 		utils.newAccountCredentials().then((data) => {
 			accountToBeDeletedUid = data.body.uid;
@@ -88,7 +16,7 @@ describe('Visuals', () => {
 		});
 		utils.addDebt();
 		// Annual Percentage Rate should only take numbers as an input
-		cy.get(debtPage.annualPercentageRateInput).type('someNameKindaLongButNotTooLong');
+		cy.get(debtPage.annualPercentageRateInput).type(data.longTexg);
 		cy.get(debtPage.nicknameInput).click();
 		cy.get(debtPage.annualPercentageRateInput).should('have.attr', 'aria-describedby', 'mat-error-4');
 		cy.get(debtPage.annualPercentageRateInput).should('have.attr', 'max', '300');
@@ -101,5 +29,51 @@ describe('Visuals', () => {
 		cy.get(debtPage.annualPercentageRateInput).clear().type('300');
 		cy.get(debtPage.nicknameInput).click();
 		cy.get(debtPage.annualPercentageRateInput).should('not.have.attr', 'aria-describedby', 'mat-error-4');
+	});
+
+	it('Verify debt creation [minimum payment] field, ID: 27', () => {
+		cy.intercept('api/v2/user/workspace/*').as('workspace');
+		utils.newAccountCredentials().then((data) => {
+			accountToBeDeletedUid = data.body.uid;
+			utils.createAccountAndSignIn(data.body);
+		});
+		utils.addDebt();
+		// minimum payment should only take numbers as an input
+		cy.get(debtPage.minimumPaymentAmountInput).type(data.longTexg);
+		cy.get(debtPage.nicknameInput).click();
+		cy.get(debtPage.minimumPaymentAmountInput).should('have.attr', 'aria-describedby', 'mat-error-5');
+		// entering number should be valid
+		cy.get(debtPage.minimumPaymentAmountInput).type(data.validNumber);
+		cy.get(debtPage.nicknameInput).click();
+		cy.get(debtPage.minimumPaymentAmountInput).should('have.attr', 'aria-invalid', 'false');
+		cy.get(debtPage.minimumPaymentTooltip).click();
+		cy.get(debtPage.minimumPaymentTooltipText).should('have.text', data.tooltipText);
+	});
+
+	it('Verify debt creation [calender] field, ID: 28', () => {
+		cy.intercept('api/v2/user/workspace/*').as('workspace');
+		utils.newAccountCredentials().then((data) => {
+			accountToBeDeletedUid = data.body.uid;
+			utils.createAccountAndSignIn(data.body);
+		});
+		utils.addDebt();
+		// clicking on a date in the past should show an error
+		cy.get(debtPage.dueDataButton).click();
+		cy.get(debtPage.previousMonthButton).click();
+		cy.get(debtPage.calenderDaysButtons).first().click();
+		cy.get(debtPage.oldDataMsg).should('have.text', data.oldDataMsg);
+		// clicking on a date that is not shared across all months should show an error
+		cy.get(debtPage.calenderDaysButtons).last().click();
+		cy.get(debtPage.oldDataMsg).should('have.text', data.wrongDataMsg);
+	});
+
+	it('Verify debt page after creating a debt, ID: 29', () => {
+		cy.intercept('api/v2/user/workspace/*').as('workspace');
+		utils.newAccountCredentials().then((data) => {
+			accountToBeDeletedUid = data.body.uid;
+			utils.createAccountAndSignIn(data.body);
+		});
+		utils.fillDebtInfo('adewdbc', '2000', '300', '300');
+		cy.compareSnapshot('debt-page-after-debt-added');
 	});
 });
