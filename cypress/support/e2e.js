@@ -7,6 +7,7 @@ beforeEach(() => {
   });
   cy.intercept('api/v2/user/workspace/*').as('workspace')
   cy.intercept('api/v2/user/data').as('user-data')
+  cy.intercept('https://www.debtpayoffplanner.com//wp-json/wp/v2/*').as('planner');
   
 });
 

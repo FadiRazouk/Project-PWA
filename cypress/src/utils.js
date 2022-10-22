@@ -18,19 +18,33 @@ const createAccountAndSignIn = (credentials) => {
     cy.get(shared.submitButton).click()
     cy.wait('@user-data')
     cy.get(loginPage.codeInput).type(credentials.vcode)
-    cy.wait('@workspace')
+    // cy.wait('@workspace');
     cy.get(shared.submitButton).click()
     cy.wait('@user-data');
 }
 
 const addDebt = () =>{
+    cy.wait('@workspace');
+    // cy.wait('@workspace');
     cy.get(debtPage.navbarDebtButton).click();
 		cy.wait('@workspace');
 		cy.get(debtPage.addDebtButton).eq(1).click({ force: true });
 }
 
+const fillDebtInfo = (nickName, currentBalance, annualPercentageRate, minimumPaymentAmount) =>{
+    addDebt();
+    cy.get(debtPage.nicknameInput).type(nickName);
+		cy.get(debtPage.currentBalanceInput).type(currentBalance);
+		cy.get(debtPage.annualPercentageRateInput).type(annualPercentageRate);
+		cy.get(debtPage.minimumPaymentAmountInput).type(minimumPaymentAmount);
+		cy.get(shared.submitButton).click()
+		cy.wait('@workspace');
+}
+
+
 module.exports = {
   addDebt,
-  newAccountCredentials,
   createAccountAndSignIn,
+  fillDebtInfo,
+  newAccountCredentials,
 };
