@@ -1,6 +1,5 @@
 import { defineConfig } from 'cypress'
-const getCompareSnapshotsPlugin = require('cypress-image-diff-js/dist/plugin');
-
+import getCompareSnapshotsPlugin from 'cypress-image-diff-js/dist/plugin';
 
 export default defineConfig({
   fixturesFolder: 'cypress/fixtures',
