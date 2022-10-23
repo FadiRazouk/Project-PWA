@@ -9,7 +9,6 @@ describe('debt page tests', () => {
 	});
 	it('Verify the visuals of the debt page, ID: 21', () => {
 		cy.visit('/');
-		cy.intercept('api/v2/user/workspace/*').as('workspace')
 		utils.newAccountCredentials().then((data: any) => {
 			accountToBeDeletedUid = data.body.uid;
 			utils.createAccountAndSignIn(data.body);
@@ -53,7 +52,6 @@ describe('debt page tests', () => {
 	});
 
 	it('Verify debt creation [nickname] field, ID: 24', () => {
-		cy.intercept('api/v2/user/workspace/*').as('workspace');
 		utils.newAccountCredentials().then((data: any) => {
 			accountToBeDeletedUid = data.body.uid;
 			utils.createAccountAndSignIn(data.body);
@@ -64,7 +62,6 @@ describe('debt page tests', () => {
 	});
 
 	it('Verify debt creation [Current balance] field, ID: 25', () => {
-		cy.intercept('api/v2/user/workspace/*').as('workspace');
 		utils.newAccountCredentials().then((data: any) => {
 			accountToBeDeletedUid = data.body.uid;
 			utils.createAccountAndSignIn(data.body);

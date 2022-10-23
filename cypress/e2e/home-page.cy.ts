@@ -37,10 +37,12 @@ describe('home page tests', () => {
 	});
 
 	it('Verify home page after creating a debt, ID: 20', () => {
+		const date = new Date('October 20, 2022').getTime();
 		utils.newAccountCredentials().then((data) => {
 			accountToBeDeletedUid = data.body.uid;
 			utils.createAccountAndSignIn(data.body);
 		});
+		cy.clock(date);
 		utils.fillDebtInfo('adewdbc', '2000', '300', '300');
 		cy.get(selectors.mainPage.navbarHomeButton).click();
 		cy.wait('@planner');

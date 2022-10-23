@@ -9,7 +9,6 @@ describe('debt page tests', () => {
 	});
 
 	it('Verify debt creation [Annual Percentage Rate] field, ID: 26', () => {
-		cy.intercept('api/v2/user/workspace/*').as('workspace');
 		utils.newAccountCredentials().then((data) => {
 			accountToBeDeletedUid = data.body.uid;
 			utils.createAccountAndSignIn(data.body);
@@ -32,7 +31,6 @@ describe('debt page tests', () => {
 	});
 
 	it('Verify debt creation [minimum payment] field, ID: 27', () => {
-		cy.intercept('api/v2/user/workspace/*').as('workspace');
 		utils.newAccountCredentials().then((data) => {
 			accountToBeDeletedUid = data.body.uid;
 			utils.createAccountAndSignIn(data.body);
@@ -51,7 +49,6 @@ describe('debt page tests', () => {
 	});
 
 	it('Verify debt creation [calender] field, ID: 28', () => {
-		cy.intercept('api/v2/user/workspace/*').as('workspace');
 		utils.newAccountCredentials().then((data) => {
 			accountToBeDeletedUid = data.body.uid;
 			utils.createAccountAndSignIn(data.body);
@@ -67,13 +64,11 @@ describe('debt page tests', () => {
 		cy.get(selectors.debtPage.oldDataMsg).should('have.text', data.data.wrongDataMsg);
 	});
 
-	it('Verify debt page after creating a debt, ID: 29', () => {
-		cy.intercept('api/v2/user/workspace/*').as('workspace');
+	it.only('Verify debt page after creating a debt, ID: 29', () => {
 		utils.newAccountCredentials().then((data) => {
 			accountToBeDeletedUid = data.body.uid;
 			utils.createAccountAndSignIn(data.body);
 		});
-		cy.wait('@workspace');
 		utils.fillDebtInfo('adewdbc', '2000', '300', '300');
 		cy.get('.info.footer-light').should('be.visible');
 		cy.wait(5000)
