@@ -11,6 +11,7 @@ beforeEach(() => {
 
   // const date = new Date('October 22, 2022').getTime();
   // cy.clock(date)
+  cy.viewport(390, 844)
 });
 
 after(() => {
