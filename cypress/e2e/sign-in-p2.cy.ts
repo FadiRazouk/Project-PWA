@@ -79,6 +79,7 @@ describe('Field validation, login page visuals', () => {
 		cy.get(selectors.loginPage.passwordInput).type('12345');
 		cy.get(selectors.loginPage.passwordValidation).should('have.length', 4);
 		cy.get(selectors.shared.submitButton).should('be.enabled');
-		cy.compareSnapshot('sign-up-password-page', 0)
+		cy.wait(5000)
+		cy.compareSnapshot('sign-up-password-page', 0.04)
 	});
 });

@@ -42,6 +42,7 @@ describe('sign in page tests', () => {
 			cy.get(selectors.loginPage.codeInput).type(response.body.vcode);
 			cy.get(selectors.shared.submitButton).click();
 			cy.get("app-greeting h3").should('have.text', data.data.welcomeText);
+			cy.wait(5000)
 			cy.compareSnapshot('home-page', 0);
 		})
 	});

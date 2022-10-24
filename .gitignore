@@ -10,3 +10,5 @@
 /cypress-visual-screenshots/diff
 /cypress-visual-report
 .cypressDash.png
+/runner-results
+/multi-reporter-config.json
