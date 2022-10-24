@@ -36,7 +36,7 @@ describe('home page tests', () => {
 		cy.url().should('include', 'settings/workspaces');
 	});
 
-	it('Verify home page after creating a debt, ID: 20', () => {
+	it.only('Verify home page after creating a debt, ID: 20', () => {
 		const date = new Date('October 20, 2022').getTime();
 		utils.newAccountCredentials().then((data) => {
 			accountToBeDeletedUid = data.body.uid;
