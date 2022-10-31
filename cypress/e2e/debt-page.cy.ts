@@ -64,7 +64,7 @@ describe('debt page tests', () => {
 		cy.get(selectors.debtPage.oldDataMsg).should('have.text', data.data.wrongDataMsg);
 	});
 
-	it.only('Verify debt page after creating a debt, ID: 29', () => {
+	it('Verify debt page after creating a debt, ID: 29', () => {
 		utils.newAccountCredentials().then((data) => {
 			accountToBeDeletedUid = data.body.uid;
 			utils.createAccountAndSignIn(data.body);
