@@ -1,6 +1,8 @@
 import { selectors } from '../locators/Selectors';
 import { utils } from '../src/Utils';
 import { data } from '../src/Data';
+const isMobile = Cypress.env('isMobile');
+
 
 describe('debt page tests', () => {
 	let accountToBeDeletedUid
@@ -72,6 +74,6 @@ describe('debt page tests', () => {
 		utils.fillDebtInfo('adewdbc', '2000', '300', '300');
 		cy.get('.info.footer-light').should('be.visible');
 		cy.wait(5000)
-		cy.compareSnapshot('debt-page-after-debt-added', 0);
+		cy.compareSnapshot(isMobile ? 'debt-page-after-debt-added' : 'debt-page-after-debt-added(D)', 0);
 	});
 });

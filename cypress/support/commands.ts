@@ -6,3 +6,11 @@ Cypress.Commands.add('deleteUser', (uid: string) => {
         expect(response.status).to.be.equal(200);
     })
 });
+
+Cypress.Commands.add('changeViewport', (view: string) => {
+    if(view = 'DD'){
+        cy.viewport(1387, 764)
+    }else {
+        cy.viewport(390, 844)
+    }
+});

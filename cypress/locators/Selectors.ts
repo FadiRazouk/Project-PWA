@@ -2,6 +2,9 @@ class Selectors {
   loginPage = {
     backButton: 'a[class*=mat-button-base]',
     codeInput: '#code0',
+    penIconButton: '[class*="fa-pen"]',
+    resendCodeMsg: '[mat-dialog-content] > P',
+    contactUsButton: '[href^="mailto:support@debtpayoffplanner.com?subject=Debt%20Payoff%20Planner%20support%20request%20for%20verification%"]',
     forgotPasswordLink: '[href="#/public/forgot-password"]',
     passwordInput: '[id*="input_password"]',
     passwordValidation : '.passed',
@@ -15,6 +18,7 @@ class Selectors {
     primaryButton:'[class*="workspace-2"]',
     profileLogo: '[mattooltip="Profile"]',
     navbarHomeButton: '[data-mat-icon-name="logo_bird"]',
+    moreButton: 'More'
   }
 
   shared = {

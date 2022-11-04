@@ -19,5 +19,8 @@ export default defineConfig({
     },
     baseUrl: 'http://54.39.177.218:8080/',
     specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}',
+    env: {
+      isMobile: false
+    }
   },
 })

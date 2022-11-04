@@ -11,6 +11,8 @@ class Data {
         validNumber: '1234',
         validText: 'ValidInput',
         welcomeText: 'Hi QA Test! Primary',
+        resendValCodeMsgHeader: ' Check your email\n',
+        resendValCodeMsg:"We've sent a new verification code to your email. If you still don't see it, check your spam or junk folder and ensure the email address is correct.",
     }
 };
 

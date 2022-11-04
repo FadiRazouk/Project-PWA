@@ -1,6 +1,6 @@
 import { selectors } from '../locators/Selectors';
-import { utils } from '../src/Utils';
 import { data } from '../src/Data';
+const isMobile = Cypress.env('isMobile');
 
 describe('Field validation, login page visuals', () => {
 	beforeEach(() => {
@@ -17,7 +17,7 @@ describe('Field validation, login page visuals', () => {
 	it('Verify clicking forgot password link should take you to forgot password page, ID: 12', () => {
 		cy.get(selectors.loginPage.forgotPasswordLink).click();
 		cy.url().should('include', 'forgot-password');
-		cy.compareSnapshot('forgot-password-page', 0);
+		cy.compareSnapshot(isMobile ?'forgot-password-page': 'forgot-password-page(D)', 0);
 	});
 
 	it('Verify forgot password field validation, ID: 13', () => {
@@ -80,6 +80,6 @@ describe('Field validation, login page visuals', () => {
 		cy.get(selectors.loginPage.passwordValidation).should('have.length', 4);
 		cy.get(selectors.shared.submitButton).should('be.enabled');
 		cy.wait(5000)
-		cy.compareSnapshot('sign-up-password-page', 0.04)
+		cy.compareSnapshot(isMobile ?'sign-up-password-page': 'sign-up-password-page(D)', 0);
 	});
 });
