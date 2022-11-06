@@ -1,5 +1,9 @@
 const compareSnapshotCommand = require('cypress-image-diff-js/dist/command')
 compareSnapshotCommand()
+import '@4tw/cypress-drag-drop'
+require('@4tw/cypress-drag-drop')
+
+
 
 Cypress.Commands.add('deleteUser', (uid: string) => {
     cy.request("DELETE", `http://54.39.177.218:3020/api/v2/test-accounts/uid/${uid}`).then(response => {

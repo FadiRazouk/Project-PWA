@@ -18,7 +18,7 @@ describe('Validate page tests', () => {
 			cy.get(selectors.loginPage.passwordInput).type(response.body.password);
 			cy.get(selectors.shared.submitButton).click();
 			cy.get(selectors.loginPage.codeInput).should('be.visible')
-			cy.compareSnapshot(isMobile ? 'validate-page': 'validate-page(D)', 0);
+			cy.compareSnapshot(isMobile ? 'validate-page': 'validate-page(D)', 0.1);
 		})
 	});
 
@@ -80,7 +80,7 @@ describe('Validate page tests', () => {
 			cy.get(selectors.loginPage.codeInput).should('be.visible');
 			cy.get('.no-email').click();
 			isMobile && cy.url().should('include', 'troubleshoot');
-			cy.compareSnapshot(isMobile ? 'troubleshoot-page': 'troubleshoot-page(D)', 0);
+			cy.compareSnapshot(isMobile ? 'troubleshoot-page': 'troubleshoot-page(D)', 0.1);
 		})
 	});
 

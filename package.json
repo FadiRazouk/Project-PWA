@@ -12,6 +12,7 @@
     "cypress:gui": "cypress run --browser chrome --no-exit"
   },
   "devDependencies": {
+    "@4tw/cypress-drag-drop": "^2.2.1",
     "cypress-image-diff-js": "^1.22.0",
     "cypress-parallel": "^0.9.1",
     "mocha": "^10.0.0",

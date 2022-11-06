@@ -18,7 +18,10 @@ class Selectors {
     primaryButton:'[class*="workspace-2"]',
     profileLogo: '[mattooltip="Profile"]',
     navbarHomeButton: '[data-mat-icon-name="logo_bird"]',
-    moreButton: 'More'
+    moreButton: 'More',
+    showCatagories: '.show-categories',
+    catagories:'.category-wrapper.swiper-slide',
+    didYouKnowPagination: 'app-did-you-know > .card > swiper > .s-wrapper > .swiper-pagination > span',
   }
 
   shared = {
@@ -40,6 +43,8 @@ class Selectors {
     previousMonthButton:'[aria-label="Previous month"]',
     calenderDaysButtons: '[class*="cell-content"]',
     oldDataMsg: 'simple-snack-bar > span',
+    sortButton:'.second-line-utilities > .mat-focus-indicator',
+    debtName: '[class="body-heavy ellipsis debt-name"]',
   }
 }
 export const selectors = new Selectors();

@@ -3,8 +3,8 @@ import getCompareSnapshotsPlugin from 'cypress-image-diff-js/dist/plugin';
 
 export default defineConfig({
   fixturesFolder: 'cypress/fixtures',
-  viewportWidth: 390,
-  viewportHeight: 844,
+  viewportWidth: 1387,
+  viewportHeight: 764,
   execTimeout: 20000,
 	defaultCommandTimeout: 20000,
 	requestTimeout: 20000,

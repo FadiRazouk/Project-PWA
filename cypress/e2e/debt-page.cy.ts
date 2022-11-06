@@ -76,4 +76,97 @@ describe('debt page tests', () => {
 		cy.wait(5000)
 		cy.compareSnapshot(isMobile ? 'debt-page-after-debt-added' : 'debt-page-after-debt-added(D)', 0);
 	});
+
+	xit('Verify debt page Summary slider, ID: 42', () => {
+		const date = new Date('August 23, 2022 13:12:59').getTime();
+		utils.newAccountCredentials().then((data) => {
+			accountToBeDeletedUid = data.body.uid;
+			utils.createAccountAndSignIn(data.body);
+		});
+		cy.clock(date);
+		utils.addDebts();
+		cy.reload();
+		cy.get(selectors.debtPage.navbarDebtButton).click();
+		cy.wait(3000);
+		// The dots on the slider are not working, this will be skipped.
+		cy.get('.swiper-pagination > :nth-child(2)').click()
+		cy.contains('Balance by debt').should('be.visible')
+	});
+
+	it('Verify debt page debts sorting, ID: 43', () => {
+		const date = new Date('August 23, 2022 13:12:59').getTime();
+		utils.newAccountCredentials().then((data) => {
+			accountToBeDeletedUid = data.body.uid;
+			utils.createAccountAndSignIn(data.body);
+		});
+		cy.clock(date);
+		utils.addDebts();
+		cy.reload();
+		cy.get(selectors.debtPage.navbarDebtButton).click();
+		cy.wait(3000);
+		cy.get(selectors.debtPage.debtName).eq(0).should('have.text', 'HELOC');
+		cy.get(selectors.debtPage.sortButton).click();
+		cy.wait(1000)
+		cy.get(selectors.debtPage.debtName).eq(0).should('have.text', 'Visa');
+	});
+
+	it('Verify debt page debts sorting, ID: 44', () => {
+		const date = new Date('August 23, 2022 13:12:59').getTime();
+		utils.newAccountCredentials().then((data) => {
+			accountToBeDeletedUid = data.body.uid;
+			utils.createAccountAndSignIn(data.body);
+		});
+		cy.clock(date);
+		utils.addDebts();
+		cy.reload();
+		cy.get(selectors.debtPage.navbarDebtButton).click();
+		cy.wait(3000);
+		cy.get(selectors.debtPage.debtName).eq(0).should('have.text', 'HELOC');
+		cy.get('.mat-form-field-infix').click();
+		cy.get('#mat-option-2').click();
+		cy.wait(500);
+		cy.get(selectors.debtPage.debtName).eq(0).should('have.text', 'TV');
+	});
+
+	it('Verify debt page debt search, ID: 45', () => {
+		const date = new Date('August 23, 2022 13:12:59').getTime();
+		utils.newAccountCredentials().then((data) => {
+			accountToBeDeletedUid = data.body.uid;
+			utils.createAccountAndSignIn(data.body);
+		});
+		cy.clock(date);
+		utils.addDebts();
+		cy.reload();
+		cy.get(selectors.debtPage.navbarDebtButton).click();
+		cy.wait(3000);
+		cy.get('.search-bar').type('Visa');
+		cy.get('.search-results').click();
+		cy.url().should('include', 'debt/6/progress')
+	});
+
+	xit('Verify debt page debts sorting, ID: 46', () => {
+		const date = new Date('August 23, 2022 13:12:59').getTime();
+		utils.newAccountCredentials().then((data) => {
+			accountToBeDeletedUid = data.body.uid;
+			utils.createAccountAndSignIn(data.body);
+		});
+		cy.clock(date);
+		utils.addDebts();
+		cy.reload();
+		cy.get(selectors.debtPage.navbarDebtButton).click();
+
+		cy.get(selectors.debtPage.debtName).eq(0).should('have.text', 'HELOC');
+		cy.get('.mat-form-field-infix').click();
+		cy.get('#mat-option-3').click();
+		cy.wait(500);
+		cy.get('.paragraph-p3-heavy').click();
+		cy.pause()
+
+		// cy.get('body').click()
+		// cy.get('#visit-beach').drag('#todo-list');
+	    cy.get(':nth-child(3) > .mat-ripple > .header > .caption-light > .fal').drag(':nth-child(1) > .mat-ripple > .header > .caption-light > .fal')
+
+		// cy.get(':nth-child(7) > .mat-ripple').drag('.search-bar')
+		// cy.get('#cdk-drop-list-0 > :nth-child(2) > .mat-ripple')
+	});
 });
