@@ -14,6 +14,24 @@ cd Project-PWA
 docker run -it -v $PWD:/e2e -w /e2e cypress/included:10.10.0
 ```
 
+# (temporary) to test mobile you need to change some config in Cypress.config.ts
+
+change from:
+```
+  viewportWidth: 1387,
+  viewportHeight: 764,
+  ```
+to:
+```
+  viewportWidth: 390,
+  viewportHeight: 844,
+```
+and isMobile from :
+
+```
+false to true
+```
+
 # here is the latest cicd run for the tests in parallel
 
 https://github.com/FadiRazouk/Project-PWA/actions/runs/3302814993/jobs/5450030348

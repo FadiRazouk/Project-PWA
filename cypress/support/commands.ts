@@ -18,3 +18,10 @@ Cypress.Commands.add('changeViewport', (view: string) => {
         cy.viewport(390, 844)
     }
 });
+
+Cypress.Commands.add('swipeElement', (element: string, index: number = 0) => {
+    cy.get(element).eq(index).trigger('pointerdown', { which: 1 })
+    .trigger('pointermove', 'left')
+    .trigger('pointerup', { force: true })
+});
+

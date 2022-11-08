@@ -8,6 +8,7 @@ declare namespace Cypress {
      */
     deleteUser(value: string): Chainable<Element>;
     changeViewport(value: string): Chainable<Element>;
+    swipeElement(value: string, index?: number): Chainable<Element>;
     compareSnapshot(value: string, threshold: number): Chainable<Element>;
   }
 }

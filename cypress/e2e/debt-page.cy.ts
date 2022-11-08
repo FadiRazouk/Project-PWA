@@ -2,6 +2,7 @@ import { selectors } from '../locators/Selectors';
 import { utils } from '../src/Utils';
 import { data } from '../src/Data';
 const isMobile = Cypress.env('isMobile');
+const date = new Date('August 23, 2022 13:12:59').getTime();
 
 
 describe('debt page tests', () => {
@@ -71,14 +72,14 @@ describe('debt page tests', () => {
 			accountToBeDeletedUid = data.body.uid;
 			utils.createAccountAndSignIn(data.body);
 		});
-		utils.fillDebtInfo('adewdbc', '2000', '300', '300');
-		cy.get('.info.footer-light').should('be.visible');
+		cy.clock(date);
+		utils.addDebts();
+		cy.reload();
 		cy.wait(5000)
 		cy.compareSnapshot(isMobile ? 'debt-page-after-debt-added' : 'debt-page-after-debt-added(D)', 0);
 	});
 
-	xit('Verify debt page Summary slider, ID: 42', () => {
-		const date = new Date('August 23, 2022 13:12:59').getTime();
+	it('Verify debt page Summary slider, ID: 42', () => {
 		utils.newAccountCredentials().then((data) => {
 			accountToBeDeletedUid = data.body.uid;
 			utils.createAccountAndSignIn(data.body);
@@ -87,14 +88,14 @@ describe('debt page tests', () => {
 		utils.addDebts();
 		cy.reload();
 		cy.get(selectors.debtPage.navbarDebtButton).click();
-		cy.wait(3000);
+		cy.wait(1500);
 		// The dots on the slider are not working, this will be skipped.
-		cy.get('.swiper-pagination > :nth-child(2)').click()
-		cy.contains('Balance by debt').should('be.visible')
+		isMobile && cy.swipeElement('[class="chartjs-render-monitor"]', 1)
+		cy.contains('Balance by debt').should('be.visible');
+		cy.compareSnapshot(isMobile ? 'Summary': 'Summary(D)', 0);
 	});
 
-	it('Verify debt page debts sorting, ID: 43', () => {
-		const date = new Date('August 23, 2022 13:12:59').getTime();
+	it('Verify debt page debts sorting [A-Z], ID: 43', () => {
 		utils.newAccountCredentials().then((data) => {
 			accountToBeDeletedUid = data.body.uid;
 			utils.createAccountAndSignIn(data.body);
@@ -103,15 +104,14 @@ describe('debt page tests', () => {
 		utils.addDebts();
 		cy.reload();
 		cy.get(selectors.debtPage.navbarDebtButton).click();
-		cy.wait(3000);
+		cy.wait(1500);
 		cy.get(selectors.debtPage.debtName).eq(0).should('have.text', 'HELOC');
 		cy.get(selectors.debtPage.sortButton).click();
 		cy.wait(1000)
 		cy.get(selectors.debtPage.debtName).eq(0).should('have.text', 'Visa');
 	});
 
-	it('Verify debt page debts sorting, ID: 44', () => {
-		const date = new Date('August 23, 2022 13:12:59').getTime();
+	it('Verify debt page debts sorting [Balance], ID: 44', () => {
 		utils.newAccountCredentials().then((data) => {
 			accountToBeDeletedUid = data.body.uid;
 			utils.createAccountAndSignIn(data.body);
@@ -120,7 +120,7 @@ describe('debt page tests', () => {
 		utils.addDebts();
 		cy.reload();
 		cy.get(selectors.debtPage.navbarDebtButton).click();
-		cy.wait(3000);
+		cy.wait(1500);
 		cy.get(selectors.debtPage.debtName).eq(0).should('have.text', 'HELOC');
 		cy.get('.mat-form-field-infix').click();
 		cy.get('#mat-option-2').click();
@@ -128,8 +128,7 @@ describe('debt page tests', () => {
 		cy.get(selectors.debtPage.debtName).eq(0).should('have.text', 'TV');
 	});
 
-	it('Verify debt page debt search, ID: 45', () => {
-		const date = new Date('August 23, 2022 13:12:59').getTime();
+	it('Verify debt page debts sorting [APR], ID: 46', () => {
 		utils.newAccountCredentials().then((data) => {
 			accountToBeDeletedUid = data.body.uid;
 			utils.createAccountAndSignIn(data.body);
@@ -138,14 +137,47 @@ describe('debt page tests', () => {
 		utils.addDebts();
 		cy.reload();
 		cy.get(selectors.debtPage.navbarDebtButton).click();
-		cy.wait(3000);
+		cy.wait(1500);
+		cy.get(selectors.debtPage.debtName).last().should('have.text', 'Visa');
+		cy.get('.mat-form-field-infix').click();
+		cy.get('#mat-option-0').click();
+		cy.wait(500);
+		cy.get(selectors.debtPage.debtName).last().should('have.text', 'Discover');
+	});
+
+	it('Verify debt page debts sorting [Name], ID: 47', () => {
+		utils.newAccountCredentials().then((data) => {
+			accountToBeDeletedUid = data.body.uid;
+			utils.createAccountAndSignIn(data.body);
+		});
+		cy.clock(date);
+		utils.addDebts();
+		cy.reload();
+		cy.get(selectors.debtPage.navbarDebtButton).click();
+		cy.wait(1500);
+		cy.get(selectors.debtPage.debtName).eq(0).should('have.text', 'HELOC');
+		cy.get('.mat-form-field-infix').click();
+		cy.get('#mat-option-6').click();
+		cy.wait(500);
+		cy.get(selectors.debtPage.debtName).eq(0).should('have.text', 'Discover');
+	});
+
+	it('Verify debt page debt search, ID: 45', () => {
+		utils.newAccountCredentials().then((data) => {
+			accountToBeDeletedUid = data.body.uid;
+			utils.createAccountAndSignIn(data.body);
+		});
+		cy.clock(date);
+		utils.addDebts();
+		cy.reload();
+		cy.get(selectors.debtPage.navbarDebtButton).click();
+		cy.wait(1500);
 		cy.get('.search-bar').type('Visa');
 		cy.get('.search-results').click();
 		cy.url().should('include', 'debt/6/progress')
 	});
 
-	xit('Verify debt page debts sorting, ID: 46', () => {
-		const date = new Date('August 23, 2022 13:12:59').getTime();
+	xit('Verify debt page debts sorting [Custom], ID: 46', () => {
 		utils.newAccountCredentials().then((data) => {
 			accountToBeDeletedUid = data.body.uid;
 			utils.createAccountAndSignIn(data.body);
@@ -161,12 +193,34 @@ describe('debt page tests', () => {
 		cy.wait(500);
 		cy.get('.paragraph-p3-heavy').click();
 		cy.pause()
+		cy.get('[class*="drag-handle"]').eq(0).drag(':nth-child(7) > .mat-ripple > .header > .cdk-drag-handle', {force:true});
+	});
 
-		// cy.get('body').click()
-		// cy.get('#visit-beach').drag('#todo-list');
-	    cy.get(':nth-child(3) > .mat-ripple > .header > .caption-light > .fal').drag(':nth-child(1) > .mat-ripple > .header > .caption-light > .fal')
+	it('Verify debt page clicking on a debt should take you to debt page, ID: 48', () => {
+		utils.newAccountCredentials().then((data) => {
+			accountToBeDeletedUid = data.body.uid;
+			utils.createAccountAndSignIn(data.body);
+		});
+		cy.clock(date);
+		utils.addDebts();
+		cy.reload();
+		cy.get(selectors.debtPage.navbarDebtButton).click();
+		cy.wait(1500);
+		cy.get(selectors.debtPage.debtName).eq(0).click();
+		cy.url().should('include', 'debt/0/progress')
+	});
 
-		// cy.get(':nth-child(7) > .mat-ripple').drag('.search-bar')
-		// cy.get('#cdk-drop-list-0 > :nth-child(2) > .mat-ripple')
+	it.only('Verify debt page clicking on the pencil icon on the debt card will navigate to the debt details page, ID: 49', () => {
+		utils.newAccountCredentials().then((data) => {
+			accountToBeDeletedUid = data.body.uid;
+			utils.createAccountAndSignIn(data.body);
+		});
+		cy.clock(date);
+		utils.addDebts();
+		cy.reload();
+		cy.get(selectors.debtPage.navbarDebtButton).click();
+		cy.wait(1500);
+		cy.get('[class*="fa-pen"]').eq(0).click();
+		cy.url().should('include', isMobile? 'debt/0/details' : '/0/progress?details=1');
 	});
 });

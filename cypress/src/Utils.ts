@@ -23,7 +23,6 @@ class Utils {
     cy.get(selectors.shared.submitButton).click()
     cy.wait('@user-data')
     cy.get(selectors.loginPage.codeInput).type(credentials.vcode)
-    // cy.wait('@workspace');
     cy.get(selectors.shared.submitButton).click()
     cy.wait('@user-data', { timeout: 30000 });
   }
@@ -33,7 +32,6 @@ class Utils {
    */
   addDebt = (): void => {
     cy.wait('@workspace');
-    // cy.wait('@workspace');
     cy.get(selectors.debtPage.navbarDebtButton).click();
     cy.wait('@workspace');
     cy.get(selectors.debtPage.addDebtButton).eq(1).click({ force: true });

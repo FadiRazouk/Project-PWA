@@ -1,7 +1,7 @@
 import { selectors } from '../locators/Selectors';
 import { utils } from '../src/Utils';
 const isMobile = Cypress.env('isMobile');
-
+const date = new Date('October 20, 2023').getTime();
 
 describe('home page tests', () => {
 	let accountToBeDeletedUid
@@ -39,13 +39,13 @@ describe('home page tests', () => {
 	});
 
 	it('Verify home page after creating a debt, ID: 20', () => {
-		const date = new Date('October 20, 2023').getTime();
 		utils.newAccountCredentials().then((data) => {
 			accountToBeDeletedUid = data.body.uid;
 			utils.createAccountAndSignIn(data.body);
 		});
 		cy.clock(date);
-		utils.fillDebtInfo('adewdbc', '2000', '300', '300');
+		utils.addDebts()
+		cy.reload();
 		if (isMobile) {
 			cy.get(selectors.mainPage.navbarHomeButton).click();
 		} else { cy.contains('Home').click() }
@@ -68,7 +68,6 @@ describe('home page tests', () => {
 	if(isMobile){
 		// This does not seem to be visible in the DD view.
 		it('Verify clicking on "view categories" dropdown should show all the categories, ID: 38', () => {
-			const date = new Date('August 23, 2022 13:12:59').getTime();
 			utils.newAccountCredentials().then((data) => {
 				accountToBeDeletedUid = data.body.uid;
 				utils.createAccountAndSignIn(data.body);
@@ -78,16 +77,16 @@ describe('home page tests', () => {
 			cy.reload();
 			//Show
 			cy.get(selectors.mainPage.showCatagories).click();
-			cy.get(selectors.mainPage.catagories).should('have.length', 5)
+			cy.get(selectors.mainPage.catagories).should('have.length', 5);
+			cy.compareSnapshot('view-categories', 0);
 			//Hide
 			cy.get(selectors.mainPage.showCatagories).click();
-			cy.get(selectors.mainPage.catagories).should('have.length', 0)
+			cy.get(selectors.mainPage.catagories).should('have.length', 0);
 		});
 	}
 
 
 	it('Verify clicking on "learn more" button should show Upgrade to Pro, ID: 39', () => {
-		const date = new Date('August 23, 2022 13:12:59').getTime();
 		utils.newAccountCredentials().then((data) => {
 			accountToBeDeletedUid = data.body.uid;
 			utils.createAccountAndSignIn(data.body);
@@ -101,7 +100,6 @@ describe('home page tests', () => {
 	});
 
 	it('Verify clicking on "closing adv" button should show Upgrade to Pro, ID: 40', () => {
-		const date = new Date('August 23, 2022 13:12:59').getTime();
 		utils.newAccountCredentials().then((data) => {
 			accountToBeDeletedUid = data.body.uid;
 			utils.createAccountAndSignIn(data.body);
@@ -110,13 +108,12 @@ describe('home page tests', () => {
 		utils.addDebts()
 		cy.reload();
 		cy.wait(5000)
-		cy.get('[class*="mat-icon-b"]').eq(isMobile? 0:2).click()
+		cy.get('[class*="mat-icon-b"]').eq(isMobile? 0:2).click();
+		cy.wait(6000)
 		cy.compareSnapshot(isMobile ? 'upgrade-to-pro' : 'upgrade-to-pro-adv-close(D)', 0);
 	});
 
-	it('Verify clicking on "closing tips" button should show reminder, ID: 40', () => {
-		cy.changeViewport('dd')
-		const date = new Date('August 23, 2022 13:12:59').getTime();
+	it('Verify clicking on "closing tips" button should show reminder, and clicking on learn more, ID: 50', () => {
 		utils.newAccountCredentials().then((data) => {
 			accountToBeDeletedUid = data.body.uid;
 			utils.createAccountAndSignIn(data.body);
@@ -132,7 +129,7 @@ describe('home page tests', () => {
 		cy.contains('You can always re-enable the ‘Did you know’ section in User Settings.').should('be.visible')
 	});
 
-	it('Verify clicking on "closing tips" button should show reminder, ID: 41', () => {
+	it('Verify clicking on "see all" shows the articles page, ID: 41', () => {
 		utils.newAccountCredentials().then((data) => {
 			accountToBeDeletedUid = data.body.uid;
 			utils.createAccountAndSignIn(data.body);

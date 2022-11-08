@@ -1,161 +1,13 @@
 {
     "workspacename": "Primary",
     "client_bucket": {
-        "version": 4,
-        "angDebtList": [
-            {
-                "promo": false,
-                "minimum_payment_method": "Fixed amount",
-                "payment_frequency": "Once per month",
-                "next_due_date": "2022-08-24",
-                "category": "Mortgage",
-                "debt_name": "HELOC",
-                "current_balance": 30000,
-                "no_promo_apr": 4.5,
-                "minimum_payment_amount": 114,
-                "cc_annual_fee": null,
-                "promo_apr": null,
-                "minimum_payment_percent": null,
-                "lowest_possible_minimum_payment": null,
-                "payment_days_in_cycle": null,
-                "id": "d45dbac24561"
-            },
-            {
-                "promo": false,
-                "minimum_payment_method": "Fixed amount",
-                "payment_frequency": "Once per month",
-                "next_due_date": "2022-09-27",
-                "category": "Auto Loan",
-                "debt_name": "My car",
-                "current_balance": 17000,
-                "no_promo_apr": 5,
-                "minimum_payment_amount": 321,
-                "cc_annual_fee": null,
-                "promo_apr": null,
-                "minimum_payment_percent": null,
-                "lowest_possible_minimum_payment": null,
-                "payment_days_in_cycle": null,
-                "id": "332c67c0144d"
-            },
-            {
-                "promo": false,
-                "minimum_payment_method": "Fixed amount",
-                "payment_frequency": "Once per month",
-                "next_due_date": "2022-08-27",
-                "category": "Student Loan",
-                "debt_name": "My Univ",
-                "current_balance": 26000,
-                "no_promo_apr": 5.6,
-                "minimum_payment_amount": 123,
-                "cc_annual_fee": null,
-                "promo_apr": null,
-                "minimum_payment_percent": null,
-                "lowest_possible_minimum_payment": null,
-                "payment_days_in_cycle": null,
-                "id": "b1d1e2fdb114"
-            },
-            {
-                "promo": false,
-                "minimum_payment_method": "Fixed amount",
-                "payment_frequency": "Once per month",
-                "next_due_date": "2022-09-08",
-                "category": "Auto Loan",
-                "debt_name": "Jay’s car",
-                "current_balance": 35000,
-                "no_promo_apr": 7.2,
-                "minimum_payment_amount": 600,
-                "cc_annual_fee": null,
-                "promo_apr": null,
-                "minimum_payment_percent": null,
-                "lowest_possible_minimum_payment": null,
-                "payment_days_in_cycle": null,
-                "id": "41652e169201"
-            },
-            {
-                "promo": false,
-                "minimum_payment_method": "Fixed amount",
-                "payment_frequency": "Once per month",
-                "next_due_date": "2022-12-02",
-                "category": "Other",
-                "debt_name": "TV",
-                "no_promo_apr": 18,
-                "current_balance": 1500,
-                "minimum_payment_amount": 23,
-                "cc_annual_fee": null,
-                "promo_apr": null,
-                "minimum_payment_percent": null,
-                "lowest_possible_minimum_payment": null,
-                "payment_days_in_cycle": null,
-                "id": "1c9c3fdfde9d"
-            },
-            {
-                "promo": true,
-                "minimum_payment_method": "Fixed amount",
-                "payment_frequency": "Once per month",
-                "next_due_date": "2022-12-02",
-                "category": "Other",
-                "debt_name": "Discover",
-                "current_balance": 10000,
-                "no_promo_apr": 29,
-                "promo_apr": 0,
-                "promo_end_date": "2022-09-19",
-                "minimum_payment_amount": 29,
-                "cc_annual_fee": null,
-                "minimum_payment_percent": null,
-                "lowest_possible_minimum_payment": null,
-                "payment_days_in_cycle": null,
-                "id": "e34e1f04dd10"
-            },
-            {
-                "promo": false,
-                "minimum_payment_method": "Fixed amount",
-                "payment_frequency": "Once per month",
-                "next_due_date": "2022-08-24",
-                "category": "Credit Card",
-                "debt_name": "Visa",
-                "current_balance": 7000,
-                "no_promo_apr": 26,
-                "minimum_payment_amount": 155,
-                "cc_annual_fee": null,
-                "promo_apr": null,
-                "minimum_payment_percent": null,
-                "lowest_possible_minimum_payment": null,
-                "payment_days_in_cycle": null,
-                "id": "d27c35a9a6fc"
-            }
-        ],
-        "angSourceList": [
-            {
-                "set_reminder": false,
-                "source_amount": 1377.64,
-                "source_amount_breakdown": {
-                    "minimum": 1377.64,
-                    "extra": 0
-                },
-                "source_frequency": "Once per month",
-                "next_deposit_date": "2022-12-01",
-                "completed": [],
-                "source_name": "Recurring funding"
-            }
-        ],
-        "angPayoffStrategy": {
-            "extraPaymentPriority": "avalanche",
-            "minimumCheckingBalance": 0,
-            "emergencyFundGoal": 0,
-            "savingsGoal": 0
-        },
-        "angPaymentAccount": {
-            "balance": 0,
-            "min_balance": 0,
-            "date": "2022-11-05"
-        },
         "angSettings": {
             "currency": "USD",
             "weeklySummary": false,
             "paymentDueReminders": false,
             "showBalancesOnPlan": {
-                "fundingAccount": false,
                 "eachDebt": false,
+                "fundingAccount": false,
                 "allDebts": false
             },
             "debtList": {
@@ -192,8 +44,163 @@
                 ]
             },
             "customColors": []
-        }
+        },
+        "angPaymentAccount": {
+            "balance": 0,
+            "min_balance": 0,
+            "date": "2022-08-22"
+        },
+        "angPayoffStrategy": {
+            "savingsGoal": 0,
+            "minimumCheckingBalance": 0,
+            "emergencyFundGoal": 0,
+            "extraPaymentPriority": "avalanche"
+        },
+        "version": 4,
+        "angDebtList": [
+            {
+                "promo_apr": null,
+                "minimum_payment_percent": null,
+                "debt_name": "HELOC",
+                "payment_days_in_cycle": null,
+                "lowest_possible_minimum_payment": null,
+                "no_promo_apr": 4.5,
+                "minimum_payment_method": "Fixed amount",
+                "promo": false,
+                "next_due_date": "2022-08-24",
+                "cc_annual_fee": null,
+                "payment_frequency": "Once per month",
+                "current_balance": 30000,
+                "minimum_payment_amount": 114,
+                "id": "d45dbac24561",
+                "category": "Mortgage"
+            },
+            {
+                "promo_apr": null,
+                "minimum_payment_percent": null,
+                "debt_name": "My car",
+                "payment_days_in_cycle": null,
+                "lowest_possible_minimum_payment": null,
+                "no_promo_apr": 5,
+                "minimum_payment_method": "Fixed amount",
+                "promo": false,
+                "next_due_date": "2022-09-02",
+                "cc_annual_fee": null,
+                "payment_frequency": "Once per month",
+                "current_balance": 17000,
+                "minimum_payment_amount": 321,
+                "id": "332c67c0144d",
+                "category": "Auto Loan"
+            },
+            {
+                "promo_apr": null,
+                "minimum_payment_percent": null,
+                "debt_name": "My Univ",
+                "payment_days_in_cycle": null,
+                "lowest_possible_minimum_payment": null,
+                "no_promo_apr": 5.6,
+                "minimum_payment_method": "Fixed amount",
+                "promo": false,
+                "next_due_date": "2022-08-27",
+                "cc_annual_fee": null,
+                "payment_frequency": "Once per month",
+                "current_balance": 26000,
+                "minimum_payment_amount": 123,
+                "id": "b1d1e2fdb114",
+                "category": "Student Loan"
+            },
+            {
+                "promo_apr": null,
+                "minimum_payment_percent": null,
+                "debt_name": "Jay's car",
+                "payment_days_in_cycle": null,
+                "lowest_possible_minimum_payment": null,
+                "no_promo_apr": 7.2,
+                "minimum_payment_method": "Fixed amount",
+                "promo": false,
+                "next_due_date": "2022-09-08",
+                "cc_annual_fee": null,
+                "payment_frequency": "Once per month",
+                "current_balance": 35000,
+                "minimum_payment_amount": 600,
+                "id": "41652e169201",
+                "category": "Auto Loan"
+            },
+            {
+                "promo_apr": null,
+                "minimum_payment_percent": null,
+                "debt_name": "TV",
+                "payment_days_in_cycle": null,
+                "lowest_possible_minimum_payment": null,
+                "no_promo_apr": 18,
+                "minimum_payment_method": "Fixed amount",
+                "promo": false,
+                "next_due_date": "2022-08-25",
+                "cc_annual_fee": null,
+                "payment_frequency": "Once per month",
+                "current_balance": 1500,
+                "minimum_payment_amount": 23,
+                "id": "1c9c3fdfde9d",
+                "category": "Other"
+            },
+            {
+                "promo_apr": 0,
+                "minimum_payment_percent": null,
+                "debt_name": "Discover",
+                "payment_days_in_cycle": null,
+                "lowest_possible_minimum_payment": null,
+                "no_promo_apr": 29,
+                "minimum_payment_method": "Fixed amount",
+                "promo": true,
+                "next_due_date": "2022-09-19",
+                "cc_annual_fee": null,
+                "payment_frequency": "Once per month",
+                "promo_end_date": "2023-01-19",
+                "current_balance": 10000,
+                "minimum_payment_amount": 245,
+                "id": "e34e1f04dd10",
+                "category": "Other"
+            },
+            {
+                "promo_apr": null,
+                "minimum_payment_percent": null,
+                "debt_name": "Visa",
+                "payment_days_in_cycle": null,
+                "lowest_possible_minimum_payment": null,
+                "no_promo_apr": 26,
+                "minimum_payment_method": "Fixed amount",
+                "promo": false,
+                "next_due_date": "2022-08-24",
+                "cc_annual_fee": null,
+                "payment_frequency": "Once per month",
+                "current_balance": 7000,
+                "minimum_payment_amount": 155,
+                "id": "d27c35a9a6fc",
+                "category": "Credit Card"
+            }
+        ],
+        "angSourceList": [
+            {
+                "set_reminder": false,
+                "source_amount": 1881,
+                "source_frequency": "Once per month",
+                "source_amount_breakdown": {
+                    "minimum": 1581,
+                    "extra": 300
+                },
+                "next_deposit_date": "2022-08-23",
+                "completed": [],
+                "source_name": "Recurring funding"
+            },
+            {
+                "source_amount": 3000,
+                "source_frequency": "One time only",
+                "next_deposit_date": "2023-04-29",
+                "source_name": "Tax refund",
+                "source_days_in_cycle": null
+            }
+        ]
     },
-    "client_bucket_modified_count": 0,
-    "last_client_bucket_modified": 0
+    "client_bucket_modified_count": 1,
+    "last_client_bucket_modified": 1667837714778
 }

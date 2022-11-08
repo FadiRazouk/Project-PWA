@@ -62,7 +62,6 @@ describe('Validate page tests', () => {
 			cy.get(selectors.shared.submitButton).click();
 			cy.get(selectors.loginPage.codeInput).should('be.visible');
 			cy.contains('Resend code').click();
-			// cy.wait('@validation');
 			cy.get('[id*="dialog-title"]').should('have.text', data.data.resendValCodeMsgHeader);
 			cy.get(selectors.loginPage.resendCodeMsg).should('have.text', data.data.resendValCodeMsg);
 			cy.get('[cdkfocusinitial]').click()
