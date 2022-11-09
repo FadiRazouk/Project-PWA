@@ -17,7 +17,8 @@ describe('Validate page tests', () => {
 			cy.get(selectors.loginPage.usernameInput).type(response.body.username);
 			cy.get(selectors.loginPage.passwordInput).type(response.body.password);
 			cy.get(selectors.shared.submitButton).click();
-			cy.get(selectors.loginPage.codeInput).should('be.visible')
+			cy.get(selectors.loginPage.codeInput).should('be.visible');
+			cy.wait(3000);
 			cy.compareSnapshot(isMobile ? 'validate-page': 'validate-page(D)', 0.1);
 		})
 	});

@@ -12,9 +12,9 @@ npx cypress run (to run all the tests)
 git clone https://github.com/FadiRazouk/Project-PWA
 cd Project-PWA
 FOR MOBILE:
-docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_isMobile=true -e CYPRESS_VIEWPORT_WIDTH=390 -e CYPRESS_VIEWPORT_HEIGHT=844 cypress/included:10.10.0
+npm run mobile
 FOR DESKTOP
-docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_isMobile=false -e CYPRESS_VIEWPORT_WIDTH=1387 -e CYPRESS_VIEWPORT_HEIGHT=764 cypress/included:10.10.0
+npm run desktop
 ```
 
 # here is the latest cicd run for the tests in parallel

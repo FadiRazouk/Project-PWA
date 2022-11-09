@@ -9,7 +9,9 @@
   "scripts": {
     "cy:run": "cypress run --browser chrome --headless",
     "cy:parallel": "cypress-parallel -s cy:run -t 4 -d '/cypress/e2e/*.cy.ts'",
-    "cypress:gui": "cypress run --browser chrome --no-exit"
+    "cypress:gui": "cypress run --browser chrome --no-exit",
+    "mobile": "docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_isMobile=true -e CYPRESS_VIEWPORT_WIDTH=390 -e CYPRESS_VIEWPORT_HEIGHT=844 cypress/included:10.10.0",
+    "desktop": "docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_isMobile=false -e CYPRESS_VIEWPORT_WIDTH=1387 -e CYPRESS_VIEWPORT_HEIGHT=764 cypress/included:10.10.0"
   },
   "devDependencies": {
     "@4tw/cypress-drag-drop": "^2.2.1",
