@@ -73,9 +73,12 @@ describe('debt page tests', () => {
 			utils.createAccountAndSignIn(data.body);
 		});
 		cy.clock(date);
+		cy.get(selectors.debtPage.navbarDebtButton).click();
+		cy.wait(3000);
+		cy.compareSnapshot(isMobile ? 'debt-page-before-debt-added' : 'debt-page-before-debt-added(D)', 0);
 		utils.addDebts();
 		cy.reload();
-		cy.wait(5000)
+		cy.wait(5000);
 		cy.compareSnapshot(isMobile ? 'debt-page-after-debt-added' : 'debt-page-after-debt-added(D)', 0);
 	});
 
@@ -210,7 +213,7 @@ describe('debt page tests', () => {
 		cy.url().should('include', 'debt/0/progress')
 	});
 
-	it.only('Verify debt page clicking on the pencil icon on the debt card will navigate to the debt details page, ID: 49', () => {
+	it('Verify debt page clicking on the pencil icon on the debt card will navigate to the debt details page, ID: 49', () => {
 		utils.newAccountCredentials().then((data) => {
 			accountToBeDeletedUid = data.body.uid;
 			utils.createAccountAndSignIn(data.body);

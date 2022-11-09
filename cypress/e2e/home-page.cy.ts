@@ -61,11 +61,11 @@ describe('home page tests', () => {
 			utils.createAccountAndSignIn(data.body);
 		});
 		cy.wait('@workspace');
-		cy.get('.fa-user-circle').eq(isMobile? 0:1).click();
+		cy.get('.fa-user-circle').eq(isMobile ? 0 : 1).click();
 		cy.url().should('include', 'top/settings');
 	});
 
-	if(isMobile){
+	if (isMobile) {
 		// This does not seem to be visible in the DD view.
 		it('Verify clicking on "view categories" dropdown should show all the categories, ID: 38', () => {
 			utils.newAccountCredentials().then((data) => {
@@ -108,12 +108,12 @@ describe('home page tests', () => {
 		utils.addDebts()
 		cy.reload();
 		cy.wait(5000)
-		cy.get('[class*="mat-icon-b"]').eq(isMobile? 0:2).click();
+		cy.get('[class*="mat-icon-b"]').eq(isMobile ? 0 : 2).click();
 		cy.wait(6000)
 		cy.compareSnapshot(isMobile ? 'upgrade-to-pro' : 'upgrade-to-pro-adv-close(D)', 0);
 	});
 
-	it('Verify clicking on "closing tips" button should show reminder, and clicking on learn more, ID: 50', () => {
+	it.only('Verify clicking on "closing tips" button should show reminder, and clicking on learn more, ID: 50', () => {
 		utils.newAccountCredentials().then((data) => {
 			accountToBeDeletedUid = data.body.uid;
 			utils.createAccountAndSignIn(data.body);
@@ -121,12 +121,19 @@ describe('home page tests', () => {
 		cy.clock(date);
 		utils.addDebts()
 		cy.reload();
-		for(let i=0; i<=4;i++){
-			cy.get(selectors.mainPage.didYouKnowPagination).eq(i).click({force:true});
-			cy.get('.swiper-slide-visible > .mat-focus-indicator').click({force:true});
-		}	
-		cy.get('[class*="mat-icon-b"]').eq(1).click({force:true})
-		cy.contains('You can always re-enable the ‘Did you know’ section in User Settings.').should('be.visible')
+		for (let i = 0; i <= 4; i++) {
+			cy.get(selectors.mainPage.didYouKnowPagination).eq(i).click({ force: true });
+			cy.get('.swiper-slide-visible > .mat-focus-indicator').click({ force: true });
+			cy.get('[id*="dialog-title"]').invoke('text').then((text) => {
+				expect(text.length).to.be.greaterThan(0)
+			})
+			cy.get('[class*="mat-dialog-content"]').invoke('text').then((text) => {
+				expect(text.length).to.be.greaterThan(0)
+			})
+			cy.get('div >[class*="mat-icon-button"]').click()
+		}
+		cy.get('[class*="mat-icon-b"]').eq(1).click({ force: true })
+		cy.contains('You can always re-enable the ‘Did you know’ section in User Settings.').should('be.visible');
 	});
 
 	it('Verify clicking on "see all" shows the articles page, ID: 41', () => {
@@ -140,5 +147,24 @@ describe('home page tests', () => {
 		cy.url().should('include', 'public/articles');
 		cy.get('a.mat-focus-indicator > :nth-child(1) > .mat-focus-indicator').click()
 		cy.url().should('include', 'main/focus');
+	});
+
+	xit('Verify clicking on "see how much you can save" button should take you to a new tab, ID: 51', () => {
+		utils.newAccountCredentials().then((data) => {
+			const newUrl = `https://www.firstchoicedebtrelief.com/lp7/debtpayoffplanner.php?uid=${data.body.uid}&action=desktop`
+			accountToBeDeletedUid = data.body.uid;
+			utils.createAccountAndSignIn(data.body);
+			cy.window().then((win) => {
+				cy.stub(win, 'open', url => {
+					win.location.href = newUrl;
+				}).as("popup")
+			})
+			cy.clock(date);
+			utils.addDebts()
+			cy.reload();
+			cy.wait(5000)
+			cy.get('app-first-choice > .mat-focus-indicator').click();
+			cy.get('@popup').should("be.called")
+		});
 	});
 });
